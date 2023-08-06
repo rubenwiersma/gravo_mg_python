@@ -1,13 +1,9 @@
-# Gravo MG: Graph Voronoi Multigrid
+# Gravo MG Python Bindings
 [[Paper]](https://graphics.tudelft.nl/~klaus/papers/Gravo_MG.pdf) [[Project page]](https://rubenwiersma.nl/gravomg)
 
 ![](https://rubenwiersma.nl/assets/img/publications/gravomg/teaser_gravomg.png)
 
-Repository for **"A Fast Geometric Multigrid Method for Curved Surfaces"**, published at **SIGGRAPH 2023**
-<br />
-by Ruben Wiersma, [Ahmad Nasikun](https://github.com/a-nasikun) (equal contribution); Elmar Eisemann; Klaus Hildebrandt.
-
-If you need to solve linear systems on meshes or point clouds with >50.000 vertices, Gravo MG is what you need. Gravo MG is a fast geometric multigrid method that quickly computes a hierarchy used in an iterative multigrid solver. The use of graph Voronoi cells enables fast convergence, while allowing for fast construction.
+Python binding for Gravo MG. Gravo MG is a Geometric Multigrid Method for solving linear systems on curved surfaces. For more information, check out our [project page](https://rubenwiersma.nl/gravomg).
 
 ## How to use
 Given positions of points on a mesh or point clouds and a neighborhood graph (e.g., the edges on a mesh), you can use Gravo MG to solve linear systems as follows:
