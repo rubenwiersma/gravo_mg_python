@@ -1,0 +1,7 @@
+include README.md LICENSE
+include CMakeLists.txt
+recursive-include deps/gravomg *.cpp *.h *.ipp *.hpp *.cmake CMakeLists.txt
+recursive-include deps/pybind11 *.h CMakeLists.txt *.cmake
+recursive-include src *.cpp *.h
+recursive-include src/gravomg *.py
+exclude dist
