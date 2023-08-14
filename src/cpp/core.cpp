@@ -21,10 +21,9 @@ public:
         Eigen::MatrixXd positions, Eigen::MatrixXi neighbors, Eigen::SparseMatrix<double> mass,
         double ratio, int low_bound, // Hierarchy settings
         int cycle_type, double tolerance, int stopping_criteria, int pre_iters, int post_iters, int max_iter, // Solver settings
-        bool nested, Sampling sampling_strategy, Weighting weighting, bool verbose, // Further customization
-        bool ablation, int ablation_num_points, bool ablation_random // Ablations
+        bool nested, Sampling sampling_strategy, Weighting weighting, bool verbose // Further customization
         ) {
-        solver.reset(new MGBS::MultigridSolver(positions, neighbors, mass));
+        solver.reset(new GravoMG::MultigridSolver(positions, neighbors, mass));
         solver->nested = nested;
         solver->samplingStrategy = sampling_strategy;
         solver->weightingScheme = weighting;
@@ -81,7 +80,7 @@ public:
     }
 
 private:
-    std::unique_ptr<MGBS::MultigridSolver> solver; 
+    std::unique_ptr<GravoMG::MultigridSolver> solver; 
 };
 
 
@@ -89,7 +88,7 @@ PYBIND11_MODULE(gravomg_bindings, m) {
     m.doc() = "Multigrid solver bindings";
 
     py::class_<MultigridSolver>(m, "MultigridSolver")
-        .def(py::init<Eigen::MatrixXd, Eigen::MatrixXi, Eigen::SparseMatrix<double>, double, int, int, double, int, int, int, int, bool, Sampling, Weighting, bool, bool, int, bool>())
+        .def(py::init<Eigen::MatrixXd, Eigen::MatrixXi, Eigen::SparseMatrix<double>, double, int, int, double, int, int, int, int, bool, Sampling, Weighting, bool>())
         .def("solve", &MultigridSolver::solve, py::arg("lhs"), py::arg("rhs"))
         .def("residual", &MultigridSolver::residual, py::arg("lhs"), py::arg("rhs"), py::arg("solution"), py::arg("type") = 2)
         .def("prolongation_matrices", &MultigridSolver::prolongation_matrices)

@@ -37,12 +37,12 @@ class MultigridSolver(object):
         super().__init__()
         if not mass.getformat() == 'csr':
             mass = mass.tocsr()
-        normals = pos if normals is None else normals
         self.solver = gravomg_bindings.MultigridSolver(
             pos, neigh, mass,
-            ratio, lower_bound, cycle_type, tolerance, stopping_criteria, pre_iters, post_iters, max_iter,
+            ratio, lower_bound,
+            cycle_type, tolerance, stopping_criteria, pre_iters, post_iters, max_iter,
             nested, sampling_strategy, weighting,
-            normals, verbose
+            verbose
             )
 
     def solve(self, lhs, rhs):
